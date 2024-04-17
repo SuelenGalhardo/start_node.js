@@ -2,6 +2,12 @@ const express = require("express")
 
 const app =  express();
 
-const PORT = 3334;
+app.get("/", (request, response) => {
 
-app.listen(PORT, () => console.log(`server is running on Port ${PORT}`))
+    response.send("hello word");
+
+})
+
+const PORT = 3333;
+
+app.listen(PORT, () => console.log(`server is running on Port ${PORT}`));
