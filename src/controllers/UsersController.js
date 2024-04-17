@@ -3,7 +3,8 @@ create(request, response){
     const { name, email, password} = request.body;
         
         //response.send(`Usuario: ${name}. E-mail: ${email}. e password: ${password}`);
-        response.json({name, email, password});
+       // response.status(201).json({name, email, password}); status(htttp codes) é opcional
+       response.json({name, email, password});
 
 }
 
