@@ -1,6 +1,12 @@
+const AppError = require("../utils/AppError");
+
 class UsersController {
 create(request, response){
     const { name, email, password} = request.body;
+
+    if(!name){
+        throw new AppError("Nome é obrigatorio");
+    }
         
         //response.send(`Usuario: ${name}. E-mail: ${email}. e password: ${password}`);
        // response.status(201).json({name, email, password}); status(htttp codes) é opcional

@@ -3,7 +3,7 @@ const UsersController = require("../controllers/UsersController");
 
 const usersRoutes = Router();
 
-function myMiddeleware(request, response, next){
+/*function myMiddeleware(request, response, next){
 console.log("você passou pelo Middleware")
 
 if(!request.body.isAdmin){
@@ -14,10 +14,11 @@ if(!request.body.isAdmin){
 
 next();
 
-}
+}*/
+
 const usersController = new UsersController();
 
-usersRoutes.use(myMiddeleware);
-usersRoutes.post("/", myMiddeleware, usersController.create);
-
+//usersRoutes.use(myMiddeleware); para todas as rotas
+//usersRoutes.post("/", myMiddeleware, usersController.create);
+usersRoutes.post("/",  usersController.create);
     module.exports = usersRoutes;
