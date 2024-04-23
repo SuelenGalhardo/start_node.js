@@ -2,7 +2,7 @@
 Develop a complete back-end using Node.js
 🛠️: NODE.JS || SQLite || Query Builder
 
--- Express-- || --Insonmia || -- 
+-- Express-- || --Insonmia || -- BeekeeperStudio || --
 
 
 💾Database structure: 
