@@ -1,6 +1,6 @@
 
 Develop a complete back-end using Node.js
-🛠️: NODE.JS || SQL || Query Builder
+🛠️: NODE.JS || SQLite || Query Builder
 
 -- Express-- || --Insonmia || -- 
 
