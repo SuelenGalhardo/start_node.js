@@ -7,7 +7,7 @@ const notesRoutes = Router();
 
 const notesController = new NotesController();
 
-notesRoutes.unsubscribe(ensureAuthenticated); //automaticamente aplico em toda as rotas.
+notesRoutes.use(ensureAuthenticated); //automaticamente aplico em toda as rotas.
 
 notesRoutes.post("/", notesController.create);
 notesRoutes.get("/:id", notesController.show);
