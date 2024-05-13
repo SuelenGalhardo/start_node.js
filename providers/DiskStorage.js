@@ -12,6 +12,7 @@ class DiskStorage {
 
     return file;
   }
+  // stat retorna o status do arquivo  // resolve acessa o arquivo
 
   async deleteFile(file) {
     const filePath = path.resolve(uploadConfig.UPLOADS_FOLDER, file);
@@ -22,7 +23,7 @@ class DiskStorage {
       return;
     }
 
-    await fs.promises.unlink(filePath);
+    await fs.promises.unlink(filePath); //unlink remove o arquivo 
   }
 }
 

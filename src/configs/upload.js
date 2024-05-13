@@ -1,12 +1,13 @@
 const path = require("path");
 const multer = require("multer");
+const crypto = require("crypto");
 
-const TPM_FOLDER = path.resolver(__dirname, "..", "..", "tmp");
+const TMP_FOLDER = path.resolve(__dirname, "..", "..", "tmp"); //pasta temporaria
 const UPLOADS_FOLDER = path.resolve(__dirname, "uploads");
 
-const MULTER = {
-  Storage: multer.diskStorage({
-    destination: TPM_FOLDER,
+const MULTER_CONFIG = {
+  storage: multer.diskStorage({
+    destination: TMP_FOLDER,
     filename(request, file, callback) {
       const fileHash = crypto.randomBytes(10).toString("hex");
       const fileName = `${fileHash}-${file.originalname}`;
@@ -18,8 +19,8 @@ const MULTER = {
 
 
 module.exports = {
-    TPM_FOLDER, 
+    TMP_FOLDER, 
     UPLOADS_FOLDER,
-    MULTER,
+    MULTER_CONFIG,
 }
 // INSTALADA BIBLIOTECA MULTER-CRYPTO
