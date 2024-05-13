@@ -1,4 +1,4 @@
-const { verify } = require("jsonwebtoken");
+const { verify } = require("jsonwebtoken"); //fuction disponible en jsonwebtoken
 const AppError = require("../utils/AppError");
 const authConfig = require("../configs/auth");
 
