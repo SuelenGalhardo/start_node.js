@@ -15,6 +15,7 @@ class SessionsController {
     }
 
     const passwordMatched = await compare(password, user.password);
+
     if(!passwordMatched){
         throw new AppError("E-mail e/o contraseña incorrecta", 401);
     }
@@ -22,7 +23,7 @@ class SessionsController {
     const { secret, expiresIn} = authConfig.jwt;
     const token = sign({}, secret, {
         subject: String(user.id),
-        expiresIn : expiresIn, 
+        expiresIn
     })
 
     return response.json({user, token});

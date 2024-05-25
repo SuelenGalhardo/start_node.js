@@ -51,7 +51,7 @@ class UsersController {
 
     if (password && !old_password) {
       throw new AppError(
-        "Você informar a senha antiga para definir a nova senha"
+        "Necesitas informar la contraseña antigua para definir la nueva"
       );
     }
 
