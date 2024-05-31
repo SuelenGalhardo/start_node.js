@@ -20,3 +20,8 @@ Develop a complete back-end using Node.js
 
  other options: 
  https://railway.app/new
+
+ Testing: https://jestjs.io/es-ES/docs/getting-started
+ install: 
+ 1 - npm install --save-dev jest
+ 2- npx jest --init 
