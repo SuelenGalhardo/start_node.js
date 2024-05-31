@@ -1,28 +1,20 @@
 const { hash, compare } = require("bcryptjs");
 const AppError = require("../utils/AppError");
+
+const UserRepository = require("../repositories/UserRepository");
 const sqliteConnection = require("../database/sqlite");
+const UserCreateServices = require("../services/UserCreateServices");
+
 
 class UsersController {
   async create(request, response) {
     const { name, email, password } = request.body;
 
-    const database = await sqliteConnection();
-    const checkUserExists = await database.get(
-      "SELECT * FROM users WHERE email = (?)",
-      [email]
-    );
+    const userRepository =new UserRepository();
+    const userCreateServices = new UserCreateServices(userRepository);
+    await userCreateServices.execute({name, email, password});
 
-    if (checkUserExists) {
-      throw new AppError("Este e-mail já está em uso.");
-    }
-
-    const hashedPassword = await hash(password, 8);
-
-    await database.run(
-      "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
-      [name, email, hashedPassword]
-    );
-
+   
     return response.status(201).json();
   }
 
@@ -34,7 +26,7 @@ class UsersController {
     const user = await database.get("SELECT * FROM users WHERE id = (?)", [user_id]);
 
     if (!user) {
-      throw new AppError("Usuário não encontrado");
+      throw new AppError("Usuario no encontrado");
     }
 
     const userWithUpdatedEmail = await database.get(
@@ -43,7 +35,7 @@ class UsersController {
     );
 
     if (userWithUpdatedEmail && userWithUpdatedEmail.id !== user.id) {
-      throw new AppError("Este e-mail já está em uso.");
+      throw new AppError("Este correo electrónico ya está en uso.");
     }
 
     user.name = name ?? user.name;
@@ -59,7 +51,7 @@ class UsersController {
       const checkOldPassword = await compare(old_password, user.password);
 
       if (!checkOldPassword) {
-        throw new AppError("A senha antiga não confere.");
+        throw new AppError("La contraseña antigua no coincide");
       }
 
       user.password = await hash(password, 8);
